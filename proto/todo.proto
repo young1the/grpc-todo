@@ -4,7 +4,7 @@ package todo;
 
 option java_multiple_files = true;
 option java_package = "com.example.proto.todo";
-option java_outer_classname = "TodoProtos";
+option java_outer_classname = "TodoProto";
 
 message Empty {
 
@@ -23,7 +23,6 @@ message Todo {
 
 message SaveTodoRequest {
   string title = 1;
-  string content = 2;
 }
 
 message GetTodosResponse {

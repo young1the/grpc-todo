@@ -1,4 +1,4 @@
-package com.example.javagrpcserver.Service;
+package com.example.javagrpcserver.service;
 
 import com.example.proto.hello.HelloReply;
 import com.example.proto.hello.HelloRequest;
