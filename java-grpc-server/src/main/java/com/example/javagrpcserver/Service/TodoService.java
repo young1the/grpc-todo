@@ -18,6 +18,7 @@ public class TodoService extends TodoServiceGrpc.TodoServiceImplBase {
 
     @Override
     public void saveTodo(SaveTodoRequest request, StreamObserver<TodoId> responseObserver) {
+        System.out.println(request.getTitle());
         TodoEntity todo = TodoEntity.builder()
                 .title(request.getTitle())
                 .checked(false)
@@ -31,9 +32,6 @@ public class TodoService extends TodoServiceGrpc.TodoServiceImplBase {
     @Override
     public void getTodos(Empty request, StreamObserver<GetTodosResponse> streamObserver) {
         List<TodoEntity> todoEntities = todoRepository.findAll();
-        System.out.println("hello");
-        todoEntities.forEach(ele->System.out.println(ele.getTitle()));
-        System.out.println("bye");
         List<Todo> todos = todoEntities.stream().map(ele -> {
             return Todo.newBuilder()
                     .setId(ele.getId())

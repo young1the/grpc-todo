@@ -1,7 +1,7 @@
 import express from "express"
 import cors from "cors"
 import { credentials } from "@grpc/grpc-js";
-import { GetTodosResponse, SaveTodoRequest, TodoServiceClient } from "./proto/todo";
+import { GetTodosResponse, TodoServiceClient } from "./proto/todo";
 
 const app = express()
 app.use(cors());
@@ -19,12 +19,11 @@ app.get('/api/todo', async (_, res) => {
     })
 })
 
-app.post('/api/todo', async (req, _) => {
+app.post('/api/todo', async (req, res) => {
     console.log(req.body);
     const message = { title: req.body.title ?? "" }
-    grpcClient.saveTodo(message, (error, reply) => {
-        console.log(reply);
-        console.log(error);
+    grpcClient.saveTodo(message, (_, reply) => {
+        res.json(reply);
     })
 })
 
