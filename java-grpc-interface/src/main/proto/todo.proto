@@ -1,0 +1,35 @@
+syntax = "proto3";
+package todo;
+
+option java_multiple_files = true;
+option java_package = "com.example.todo.protos";
+option java_outer_classname = "TodoProtos";
+
+message Empty {
+
+}
+
+message TodoId {
+  int64 id = 1;
+}
+
+message Todo {
+  TodoId id = 1;
+  string title = 2;
+  string content = 3;
+  bool checked = 4;
+}
+
+message SaveTodoRequest {
+  string title = 1;
+  string content = 2;
+}
+
+message GetTodosResponse {
+  repeated Todo Todos = 1;
+}
+
+service TodoService {
+  rpc saveTodo(SaveTodoRequest) returns (TodoId);
+  rpc getTodos(Empty) returns (GetTodosResponse);
+}

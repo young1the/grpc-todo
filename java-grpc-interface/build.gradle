@@ -7,6 +7,7 @@ buildscript {
 }
 
 plugins {
+    id 'idea'
     id 'java-library'
     id 'com.google.protobuf' version "${protobufPluginVersion}"
 }
@@ -56,11 +57,11 @@ protobuf {
 //}
 
 // Optional
-//idea {
-//    module {
-//        sourceDirs += file("src/generated/main/java")
-//        sourceDirs += file("src/generated/main/grpc")
-//        generatedSourceDirs += file("src/generated/main/java")
-//        generatedSourceDirs += file("src/generated/main/grpc")
-//    }
-//}
+idea {
+    module {
+        sourceDirs += file("src/generated/main/java")
+        sourceDirs += file("src/generated/main/grpc")
+        generatedSourceDirs += file("src/generated/main/java")
+        generatedSourceDirs += file("src/generated/main/grpc")
+    }
+}
