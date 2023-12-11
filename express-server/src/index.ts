@@ -12,7 +12,7 @@ const grpcClient = new MyServiceClient(
 
 app.get('/', async (_, res) => {
     const message: HelloRequest = { name: "young" };
-    grpcClient.sayHello(message, (error, reply: HelloReply) => {
+    grpcClient.sayHello(message, (_, reply: HelloReply) => {
         res.send(reply)
     });
 })
