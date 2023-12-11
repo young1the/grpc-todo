@@ -1,8 +1,9 @@
 syntax = "proto3";
+
 package todo;
 
 option java_multiple_files = true;
-option java_package = "com.example.todo.protos";
+option java_package = "com.example.proto.todo";
 option java_outer_classname = "TodoProtos";
 
 message Empty {

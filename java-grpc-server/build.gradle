@@ -17,6 +17,8 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'net.devh:grpc-spring-boot-starter:2.15.0.RELEASE'
+    implementation files('./libs/java-grpc-interface.jar') // TODO 멀티모듈 단일 프로젝트 구성하기 (Gradle)
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
