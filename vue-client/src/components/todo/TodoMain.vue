@@ -1,32 +1,19 @@
 <script setup lang="ts">
+import { useTodosStore } from '@/stores/todo';
+const todosStore = useTodosStore();
 </script>
 
 <template>
     <div class="wrapper">
         <md-tabs style="width: 100%; max-width: 720px;">
-            <md-primary-tab>Birds</md-primary-tab>
-            <md-primary-tab>Cats</md-primary-tab>
-            <md-primary-tab>Dogs</md-primary-tab>
+            <md-primary-tab>전체</md-primary-tab>
+            <md-primary-tab>진행중</md-primary-tab>
+            <md-primary-tab>완료</md-primary-tab>
         </md-tabs>
         <md-list style="width: 100%;">
-            <md-list-item interactive>
+            <md-list-item interactive v-for="todo in todosStore.todos">
                 <div slot="start"><md-checkbox touch-target="wrapper"></md-checkbox></div>
-                Apple
-            </md-list-item>
-            <md-list-item interactive>
-                <div slot="start"><md-checkbox touch-target="wrapper"></md-checkbox></div>
-                Banana
-            </md-list-item>
-            <md-list-item interactive>
-                <div slot="start"><md-checkbox touch-target="wrapper"></md-checkbox></div>
-                <div slot="headline">Cucumber</div>
-                <div slot="supporting-text">Cucumbers are long green fruits that are just as long as this multi-line
-                    description</div>
-            </md-list-item>
-            <md-list-item interactive>
-                <div slot="start"><md-checkbox touch-target="wrapper"></md-checkbox></div>
-                <div slot="headline">Shop for Kiwis</div>
-                <div slot="supporting-text">This will link you out in a new tab</div>
+                {{ todo.title }}
             </md-list-item>
         </md-list>
     </div>

@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "protoc --plugin=protoc-gen-ts_proto='.\\node_modules\\.bin\\protoc-gen-ts_proto.cmd' --ts_proto_out=./src --ts_proto_opt=outputServices=grpc-js,env=node,esModuleInterop=true ./proto/hello.proto",
+    "compile": "protoc --plugin=protoc-gen-ts_proto='.\\node_modules\\.bin\\protoc-gen-ts_proto.cmd' --ts_proto_out=./src --ts_proto_opt=outputServices=grpc-js,env=node,esModuleInterop=true ./proto/todo.proto",
     "prebuild": "eslint --fix",
     "build": "tsc",
     "watch": "tsc -w",
@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
     "@typescript-eslint/parser": "^6.13.2",
@@ -29,6 +30,7 @@
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.9.12",
+    "cors": "^2.8.5",
     "express": "^4.18.2"
   }
 }

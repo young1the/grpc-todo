@@ -36,7 +36,7 @@ public class TodoService extends TodoServiceGrpc.TodoServiceImplBase {
         System.out.println("bye");
         List<Todo> todos = todoEntities.stream().map(ele -> {
             return Todo.newBuilder()
-                    .setId(TodoId.newBuilder().setId(ele.getId()).build())
+                    .setId(ele.getId())
                     .setTitle(ele.getTitle())
                     .setChecked(ele.isChecked())
                     .build();
