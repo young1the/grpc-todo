@@ -1,0 +1,23 @@
+{
+  "name": "typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd express-server && npm run start",
+    "client": "cd vue-client && npm run dev",
+    "install-root": "npm install",
+    "install-server": "cd express-server && npm install",
+    "install-client": "cd vue-client && npm install",
+    "install-compiler": "cd ts-proto-gen && npm run compile",
+    "install-all": "npm-run-all install-root install-client install-server install-compiler"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "npm-run-all": "^4.1.5"
+  }
+}

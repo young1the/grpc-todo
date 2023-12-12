@@ -1,0 +1,19 @@
+{
+  "name": "ts-proto-gen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "protoc --plugin=protoc-gen-ts_proto='.\\node_modules\\.bin\\protoc-gen-ts_proto.cmd' --ts_proto_out=./dist --ts_proto_opt=outputServices=grpc-js,env=node,esModuleInterop=true ./todo.proto"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.9.12",
+    "protoc-gen-js": "^3.21.2",
+    "ts-proto": "^1.165.1",
+    "typescript": "^5.3.3"
+  }
+}
