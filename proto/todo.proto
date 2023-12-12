@@ -4,7 +4,7 @@ package todo;
 
 option java_multiple_files = true;
 option java_package = "com.example.proto.todo";
-option java_outer_classname = "TodoProto";
+option java_outer_classname = "TodoProtos";
 
 message Empty {
 
@@ -17,11 +17,10 @@ message TodoId {
 message Todo {
   int64 id = 1;
   string title = 2;
-  string content = 3;
-  bool checked = 4;
+  bool checked = 3;
 }
 
-message SaveTodoRequest {
+message CreateTodoRequest {
   string title = 1;
 }
 
@@ -30,6 +29,9 @@ message GetTodosResponse {
 }
 
 service TodoService {
-  rpc saveTodo(SaveTodoRequest) returns (TodoId);
-  rpc getTodos(Empty) returns (GetTodosResponse);
+  rpc createTodo(CreateTodoRequest) returns (TodoId);
+  rpc readTodo(TodoId) returns (Todo);
+  rpc updateTodo(Todo) returns (TodoId);
+  rpc deleteTodo(TodoId) returns (TodoId);
+  rpc readTodos(Empty) returns (GetTodosResponse);
 }

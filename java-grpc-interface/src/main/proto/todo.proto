@@ -20,7 +20,7 @@ message Todo {
   bool checked = 3;
 }
 
-message SaveTodoRequest {
+message CreateTodoRequest {
   string title = 1;
 }
 
@@ -29,6 +29,9 @@ message GetTodosResponse {
 }
 
 service TodoService {
-  rpc saveTodo(SaveTodoRequest) returns (TodoId);
-  rpc getTodos(Empty) returns (GetTodosResponse);
+  rpc createTodo(CreateTodoRequest) returns (TodoId);
+  rpc readTodo(TodoId) returns (Todo);
+  rpc updateTodo(Todo) returns (TodoId);
+  rpc deleteTodo(TodoId) returns (TodoId);
+  rpc readTodos(Empty) returns (GetTodosResponse);
 }

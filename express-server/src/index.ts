@@ -14,7 +14,7 @@ const grpcClient = new TodoServiceClient(
 );
 
 app.get('/api/todo', async (_, res) => {
-    grpcClient.getTodos({}, (_, reply: GetTodosResponse) => {
+    grpcClient.readTodos({}, (_, reply: GetTodosResponse) => {
         res.json(reply);
     })
 })
@@ -22,7 +22,23 @@ app.get('/api/todo', async (_, res) => {
 app.post('/api/todo', async (req, res) => {
     console.log(req.body);
     const message = { title: req.body.title ?? "" }
-    grpcClient.saveTodo(message, (_, reply) => {
+    grpcClient.createTodo(message, (_, reply) => {
+        res.json(reply);
+    })
+})
+
+app.delete('/api/todo/:id', async (req, res) => {
+    const id = req.params.id;
+    const message = { id: +id ?? -1 };
+    grpcClient.deleteTodo(message, (_, reply) => {
+        res.json(reply);
+    })
+})
+
+app.put('/api/todo/:id', async (req, res) => {
+    const message = {...req.body};
+    console.log(message);
+    grpcClient.updateTodo(message, (_, reply) => {
         res.json(reply);
     })
 })

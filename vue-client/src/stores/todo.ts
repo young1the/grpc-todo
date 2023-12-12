@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { getCurrentInstance, onMounted, shallowRef } from "vue";
+import { computed, getCurrentInstance, onMounted, ref, shallowRef } from "vue";
 
 export const useTodosStore = defineStore('todos', () => {
     const todos = shallowRef([]);
@@ -13,5 +13,18 @@ export const useTodosStore = defineStore('todos', () => {
     if (getCurrentInstance()) {
         onMounted(refetchTodos)
     }
-    return { todos, refetchTodos }
+    const filter = ref("ALL");
+    const changeFilter = (value: string) => {
+        filter.value = value;
+    }
+    const filteredTodos = computed(() => {
+        if (todos.value.length == 0 || filter.value === "ALL") return todos.value;
+        const condition = { "ALL": -1, "TODO": false, "DONE": true };
+        if (condition[filter.value] < 0) return todos.value;
+        return todos.value.filter(ele => {
+            console.log(filter.value, ele.checked, condition[filter.value]);
+            return ele.checked === condition[filter.value]
+        });
+    })
+    return { todos, refetchTodos, filteredTodos, filter, changeFilter }
 })
