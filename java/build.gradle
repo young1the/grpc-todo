@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+//bootJar.enabled = false
+
+subprojects {
+    group = 'com.example'
+    version = '0.0.1-SNAPSHOT'
+    sourceCompatibility = '17'
+
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+
+    }
+
+}
+
+project('java-grpc-interface') {
+    jar { enabled = true }
+}
+
+project('java-grpc-server') {
+    dependencies {
+        compileOnly project(':java-grpc-interface')
+    }
+}

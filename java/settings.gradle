@@ -1,0 +1,4 @@
+rootProject.name = 'java'
+
+include "java-grpc-interface"
+include "java-grpc-server"
