@@ -1,4 +1,0 @@
-rootProject.name = 'grpc-todo'
-
-include "java-grpc-interface"
-include "java-grpc-server"
