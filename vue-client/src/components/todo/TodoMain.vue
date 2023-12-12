@@ -8,7 +8,6 @@ const deleteTodo = async (id: number) => {
     );
     if (response.ok) {
         const body = await response.json();
-        console.log(body);
         todosStore.refetchTodos();
     }
 }
@@ -26,7 +25,6 @@ const checkTodo = async (todo: any, event: any) => {
     )
     if (response.ok) {
         const body = await response.json();
-        console.log(body);
         todosStore.refetchTodos();
     }
 }

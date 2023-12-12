@@ -24,7 +24,7 @@ message CreateTodoRequest {
   string title = 1;
 }
 
-message GetTodosResponse {
+message ReadTodosResponse {
   repeated Todo Todos = 1;
 }
 
@@ -33,5 +33,5 @@ service TodoService {
   rpc readTodo(TodoId) returns (Todo);
   rpc updateTodo(Todo) returns (TodoId);
   rpc deleteTodo(TodoId) returns (TodoId);
-  rpc readTodos(Empty) returns (GetTodosResponse);
+  rpc readTodos(Empty) returns (ReadTodosResponse);
 }

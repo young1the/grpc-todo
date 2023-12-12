@@ -18,7 +18,6 @@ public class TodoService extends TodoServiceGrpc.TodoServiceImplBase {
 
     @Override
     public void createTodo(CreateTodoRequest request, StreamObserver<TodoId> responseObserver) {
-        System.out.println(request.getTitle());
         TodoEntity todo = TodoEntity.builder()
                 .title(request.getTitle())
                 .checked(false)
@@ -30,7 +29,7 @@ public class TodoService extends TodoServiceGrpc.TodoServiceImplBase {
     }
 
     @Override
-    public void readTodos(Empty request, StreamObserver<GetTodosResponse> streamObserver) {
+    public void readTodos(Empty request, StreamObserver<ReadTodosResponse> streamObserver) {
         List<TodoEntity> todoEntities = todoRepository.findAll();
         List<Todo> todos = todoEntities.stream().map(ele -> {
             return Todo.newBuilder()
@@ -39,14 +38,13 @@ public class TodoService extends TodoServiceGrpc.TodoServiceImplBase {
                     .setChecked(ele.isChecked())
                     .build();
         }).toList();
-        GetTodosResponse getTodosResponse = GetTodosResponse.newBuilder().addAllTodos(todos).build();
-        streamObserver.onNext(getTodosResponse);
+        ReadTodosResponse readTodosResponse = ReadTodosResponse.newBuilder().addAllTodos(todos).build();
+        streamObserver.onNext(readTodosResponse);
         streamObserver.onCompleted();
     }
 
     @Override
     public void deleteTodo(TodoId request, StreamObserver<TodoId> streamObserver) {
-        System.out.println("delete request");
         todoRepository.delete(TodoEntity.builder().id(request.getId()).build());
         streamObserver.onNext(TodoId.newBuilder(request).build());
         streamObserver.onCompleted();
@@ -54,7 +52,6 @@ public class TodoService extends TodoServiceGrpc.TodoServiceImplBase {
 
     @Override
     public void updateTodo(Todo request, StreamObserver<TodoId> streamObserver) {
-        System.out.println("request" + request.getChecked());
         TodoEntity target = TodoEntity.builder()
                 .id(request.getId())
                 .title(request.getTitle())

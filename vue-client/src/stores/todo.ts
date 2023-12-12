@@ -22,7 +22,6 @@ export const useTodosStore = defineStore('todos', () => {
         const condition = { "ALL": -1, "TODO": false, "DONE": true };
         if (condition[filter.value] < 0) return todos.value;
         return todos.value.filter(ele => {
-            console.log(filter.value, ele.checked, condition[filter.value]);
             return ele.checked === condition[filter.value]
         });
     })
